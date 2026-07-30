@@ -1,62 +1,81 @@
 library(shiny)
+library(DT)
 
 ui <- navbarPage(
 
-  title = "Clinical Dashboard",
+  title = "Clinical ",
 
+  # Home Tab
   tabPanel(
     "Home",
-    h3("Welcome")
+
+    fluidPage(
+      h3("Welcome to Clinical Dashboard")
+    )
   ),
 
-  navbarMenu(
+  # Patient Profile Tab
+  tabPanel(
     "Patient Profile",
 
-    tabPanel(
-      "Overview",
-      h3("Patient Overview")
-    ),
+    sidebarLayout(
 
-    tabPanel(
-      "Demographics",
-      h3("Demographics Data")
-    ),
+      sidebarPanel(
+        selectInput(
+          "study",
+          "Study",
+          choices = c("Study 1", "Study 2")
+        ),
 
-    tabPanel(
-      "Medical History",
-      h3("Medical History")
+        selectInput(
+          "subject",
+          "Subject",
+          choices = c("SUBJ001", "SUBJ002")
+        )
+      ),
+
+      mainPanel(
+        h3("Patient Profile"),
+        plotOutput("patient_plot")
+      )
     )
   ),
 
-  navbarMenu(
+  # Reports Tab
+  tabPanel(
     "Reports",
 
-    tabPanel(
-      "Generate Report",
-      h3("Generate PDF/HTML Reports")
-    ),
+    sidebarLayout(
 
-    tabPanel(
-      "Report History",
-      h3("Previously Generated Reports")
+      sidebarPanel(
+        textInput("title", "Report Title"),
+        numericInput("width", "Width", 800),
+        numericInput("height", "Height", 600)
+      ),
+
+      mainPanel(
+        h3("Report Generator"),
+        actionButton("generate", "Generate Report")
+      )
     )
   ),
 
-  navbarMenu(
+  # Settings Tab
+  tabPanel(
     "Settings",
 
-    tabPanel(
-      "User Preferences",
-      h3("User Settings")
-    ),
-
-    tabPanel(
-      "Application Configuration",
-      h3("Configuration")
+    fluidPage(
+      h3("Application Settings")
     )
   )
 )
 
-server <- function(input, output, session) {}
+server <- function(input, output, session) {
+
+  output$patient_plot <- renderPlot({
+    plot(mtcars$wt, mtcars$mpg)
+  })
+
+}
 
 shinyApp(ui, server)

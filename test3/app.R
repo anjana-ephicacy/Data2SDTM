@@ -3,7 +3,7 @@ library(DT)
 
 ui <- navbarPage(
 
-  title = "Clinical Dashboard",
+  title = "Clinical ",
 
   # Home Tab
   tabPanel(
