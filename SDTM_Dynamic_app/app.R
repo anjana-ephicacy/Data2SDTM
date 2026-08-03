@@ -1,7 +1,14 @@
-
+#loading libraries
 
 library(shiny)
 library(bs4Dash)
+
+#loading the modules
+
+source("R/report_generation.R")
+source("R/upload_data.R")
+
+#Start of the ui
 
 ui <- bs4DashPage(
 
@@ -15,7 +22,8 @@ ui <- bs4DashPage(
 
     bs4Dash::navbarMenu(
       id ="input_menus",
-      navbarTab(tabName = "upload_data_tab",text = "Upload Data"),
+      navbarTab(tabName = "upload_data_tab",text = "Upload Data"
+                ),
       navbarTab(tabName = "generate_tab",text = "Generate")
     )
 
@@ -27,14 +35,30 @@ ui <- bs4DashPage(
 
   body = bs4DashBody(
 
-    h2("Welcome to Data2SDTM"),
-    p("another text")
+    bs4TabItems(
+      bs4TabItem(
+        tabName = "upload_data_tab",
+        upload_data_ui("upload_id")
+      ),
+
+      bs4TabItem(
+        tabName = "generate_tab",
+        h2("Welcome to Generate Tab")
+
+      )
+    ),
+
+
 
   ),
 
   controlbar = bs4DashControlbar(disable = TRUE)
 )
 
-server <- function(input, output, session) {}
+#Start of the server
+
+server <- function(input, output, session) {
+  upload_data_server("upload_id")
+}
 
 shinyApp(ui, server)
