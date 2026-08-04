@@ -157,52 +157,182 @@
 
 
 
+#
+# ui <- dashboardPage(
+#   header = dashboardHeader(
+#     title = "Data2SDTM"
+#   ),
+#
+#   sidebar = dashboardSidebar(disable = TRUE),
+#
+#   body = dashboardBody(
+#     tabsetPanel(
+#       id = "tabs",
+#       tabPanel("Home",
+#                h2("Home Page")),
+#       tabPanel("Reports",
+#                h2("Reports Page"),
+#
+#                fluidRow(
+#
+#                  bs4Card(
+#                    title = "Select Data",
+#                    width = 6,
+#                    sliderInput(
+#                      "slider",
+#                      "Number of observations:",
+#                      1,
+#                      100,
+#                      50
+#                    )
+#                  ),
+#
+#                  bs4Card(
+#                    title = "Select Domains",
+#                    width = 6,
+#                    status = "primary",
+#                    "Dashboard Content"
+#                  )
+#                )
+#       ),
+#       tabPanel("Settings",
+#                h2("Settings Page"))
+#     )
+#
+#   )
+# )
+#
+# server<-function(input,output,session){
+#
+# }
+# shinyApp(ui,server)
 
-ui <- dashboardPage(
-  header = dashboardHeader(
-    title = "Data2SDTM"
+
+# library(shiny)
+# library(bslib)
+#
+# ui <- page_navbar(
+#
+#   title = div(
+#     class = "brand-area",
+#
+#     tags$img(
+#       src = "logo.png",
+#       height = "45px"
+#     )
+#   ),
+#
+#   theme = bs_theme(
+#     version = 5,
+#     bootswatch = "flatly"
+#   ),
+#
+#   header = tags$head(
+#     includeCSS("www/style.css")
+#   ),
+#
+#   nav_panel(
+#     "Home",
+#     h2("Home Page")
+#   ),
+#
+#   nav_panel(
+#     "Generate",
+#     h2("Generate Data")
+#   ),
+#
+#   nav_panel(
+#     "Synthetic Study Builder",
+#     h2("Study Builder")
+#   ),
+#
+#   nav_panel(
+#     "OpenFDA",
+#     h2("OpenFDA")
+#   ),
+#
+#   nav_panel(
+#     "Contact Us",
+#     h2("Contact Us")
+#   ),
+#
+#   nav_panel(
+#     "FAQ",
+#     h2("FAQ")
+#   ),
+#
+#   nav_panel(
+#     "API Docs",
+#     h2("API Documentation")
+#   )
+# )
+#
+# server <- function(input, output, session) {}
+#
+# shinyApp(ui, server)
+
+library(shiny)
+library(bs4Dash)
+
+ui <- bs4DashPage(
+
+  header = bs4DashNavbar(
+
+    title = tags$div(
+      tags$img(
+        src = "logo.png",
+        height = "40px"
+      )
+    ),
+
+    navbarMenu(
+      id = "mainmenu",
+
+      navbarTab(
+        text = "Home",
+        tabName = "home",
+        icon = icon("house")
+      ),
+
+      navbarTab(
+        text = "Generate",
+        tabName = "generate",
+        icon = icon("gear")
+      ),
+
+      navbarTab(
+        text = "Synthetic Study Builder",
+        tabName = "study",
+        icon = icon("table")
+      ),
+
+      navbarTab(
+        text = "OpenFDA",
+        tabName = "openfda",
+        icon = icon("database")
+      ),
+
+      navbarTab(
+        text = "Contact Us",
+        tabName = "contact",
+        icon = icon("envelope")
+      )
+    )
   ),
 
-  sidebar = dashboardSidebar(disable = TRUE),
+  sidebar = bs4DashSidebar(disable = TRUE),
 
-  body = dashboardBody(
-    tabsetPanel(
-      id = "tabs",
-      tabPanel("Home",
-               h2("Home Page")),
-      tabPanel("Reports",
-               h2("Reports Page"),
+  body = bs4DashBody(
+    tags$head(
+      includeCSS("www/style.css")
+    ),
 
-               fluidRow(
+    h2("Data2SDTM Application")
+  ),
 
-                 bs4Card(
-                   title = "Select Data",
-                   width = 6,
-                   sliderInput(
-                     "slider",
-                     "Number of observations:",
-                     1,
-                     100,
-                     50
-                   )
-                 ),
-
-                 bs4Card(
-                   title = "Select Domains",
-                   width = 6,
-                   status = "primary",
-                   "Dashboard Content"
-                 )
-               )
-      ),
-      tabPanel("Settings",
-               h2("Settings Page"))
-    )
-
-  )
+  controlbar = bs4DashControlbar(disable = TRUE)
 )
 
-server<-function(input,output,session){
+server <- function(input, output, session) {}
 
-}
-shinyApp(ui,server)
+shinyApp(ui, server)

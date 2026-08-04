@@ -1,8 +1,9 @@
+
 #loading libraries
 
 library(shiny)
 library(bs4Dash)
-
+library(bslib)
 #loading the modules
 
 source("R/report_generation.R")
@@ -10,54 +11,43 @@ source("R/upload_data.R")
 
 #Start of the ui
 
-ui <- bs4DashPage(
+library(shiny)
+library(bslib)
 
-  header = bs4DashNavbar(
-    # skin = "maroon",
+ui <- page_navbar(
 
-    brand = dashboardBrand(
-      title = "Data2SDTM Application"
-      # color = "navy"
-    ),
+  title = div(
+    class = "app-logo",
+    "Data2SDTM"
+  ),
 
-    bs4Dash::navbarMenu(
-      id ="input_menus",
-      navbarTab(tabName = "upload_data_tab",text = "Upload Data"
-                ),
-      navbarTab(tabName = "generate_tab",text = "Generate")
-    )
+  header = tags$head(
+    includeCSS("www/main.css")
+  ),
+
+  nav_panel(
+
+    "Home",
+    upload_data_ui("upload_id")
+
 
   ),
 
-  sidebar = bs4DashSidebar(
-    disable = TRUE
-  ),
+  nav_panel(
+    "Settings",
 
-  body = bs4DashBody(
-    tags$head(
-      shiny::includeCSS("~/Ephicacy/Data2SDTM/Data2SDTM/SDTM_Dynamic_app/www/main.css")
-    ),
-    bs4TabItems(
-      bs4TabItem(
-        tabName = "upload_data_tab",
-        upload_data_ui("upload_id")
-      ),
+    card(
+      card_header("Application Settings"),
 
-      bs4TabItem(
-        tabName = "generate_tab",
-        h2("Welcome to Generate Tab")
-
+      card_body(
+        checkboxInput(
+          "debug",
+          "Debug Mode"
+        )
       )
-    ),
-
-
-
-  ),
-
-  controlbar = bs4DashControlbar(disable = TRUE)
+    )
+  )
 )
-
-#Start of the server
 
 server <- function(input, output, session) {
   upload_data_server("upload_id")

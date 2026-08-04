@@ -1,0 +1,43 @@
+/* Navbar Background */
+.navbar {
+    background-color: #f3f3f3 !important;
+    border-bottom: 2px solid #6f63ff;
+    padding: 12px 30px;
+}
+
+/* Brand Logo */
+.brand-area img {
+    margin-right: 30px;
+}
+
+/* Menu Items */
+.navbar-nav .nav-link {
+    color: #374151 !important;
+    font-weight: 500;
+    font-size: 17px;
+    margin-right: 10px;
+    border-radius: 12px;
+    padding: 12px 18px !important;
+    transition: all 0.3s ease;
+}
+
+/* Active Menu */
+.navbar-nav .nav-link.active {
+    background: linear-gradient(
+        135deg,
+        #7c6bff,
+        #6b4fd8
+    );
+    color: white !important;
+}
+
+/* Hover Effect */
+.navbar-nav .nav-link:hover {
+    background: #ebe8ff;
+    color: #5a41d6 !important;
+}
+
+/* Content Area */
+.container-fluid {
+    padding-top: 20px;
+}

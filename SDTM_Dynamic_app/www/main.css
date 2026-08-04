@@ -1,56 +1,60 @@
+/* page background */
+body {
+    background-color: #f5f7fb;
+}
+
+/* navbar */
 .navbar {
-    padding: 1rem 0;
-    backdrop-filter: blur(10px);
-    background-color: #fff !important;
-    position: relative;
-    z-index: 1100;
+    background-color: #ffffff !important;
+    border-bottom: 3px solid #6f63ff;
+    padding: 12px 30px;
 }
 
-.navbar-brand {
-    padding-top: var(--bs-navbar-brand-padding-y);
-    padding-bottom;
-    margin-right: var(--bs-navbar-brand-margin-end);
-    font-size: var(--bs-navbar-brand-font-size);
-    color: var(--bs-navbar-brand-color);
-    text-decoration: none;
-    white-space: nowrap;
+/* logo */
+.app-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #444;
 }
 
-.navbar-nav {
-    --bs-nav-link-padding-x: 0;
-    --bs-nav-link-padding-y: 0.5rem;
-    --bs-nav-link-font-weight: ;
-    --bs-nav-link-color: var(--bs-navbar-color);
-    --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
-    --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
-    display: flex;
-    flex-direction: column;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-}
-.nav-link.active {
-    background: var(--primary-gradient);
-    color: rgba(var(--bs-link-color-rgb)!important;
+/* nav links */
+.navbar-nav .nav-link {
+    color: #374151 !important;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 12px 16px !important;
 }
 
-.nav-link {
-    color: var(--text-dark) !important;
-    font-weight: 500;
-    margin: 0 0.5rem;
-    padding: 0.5rem 1rem !important;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-.navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl {
-    display: flex;
-    flex-wrap: inherit;
-    align-items: center;
-    justify-content: space-between;
+/* active menu */
+.navbar-nav .nav-link.active {
+    background: linear-gradient(
+        135deg,
+        #7c6cff,
+        #6949d3
+    );
+    color: white !important;
 }
 
-@media (min-width: 1200px) {
-    .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 1140px;
-    }
+/* card styling */
+.card {
+    border: 0;
+    border-radius: 15px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.08);
+}
+
+/* card headers */
+.card-header {
+    background-color: white;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* buttons */
+.btn-primary {
+    background-color: #6f63ff;
+    border-color: #6f63ff;
+}
+
+.btn-primary:hover {
+    background-color: #5c50e6;
 }

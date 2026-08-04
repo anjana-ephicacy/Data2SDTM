@@ -1,6 +1,5 @@
 upload_data_ui <- function(id) {
 
-
   therapeutic_areas <- c(
     "Oncology",
     "Hematology",
@@ -34,20 +33,32 @@ upload_data_ui <- function(id) {
     "Genetic Disorders"
   )
   ns <- NS(id)
+  layout_columns(
 
-  tagList(
+    card(
+      card_header("Study Information"),
 
-    bs4Card(title = "Upload Raw Dataset for SDTM",  width = 12,status = "primary",  solidHeader = TRUE,
+      card_body(
 
-selectInput(inputId = ns("select_input_type"),width ="200px",label = "Select Type:",choices = c("blinded","unblinded"),selected = NULL),
+        selectInput(inputId = ns("select_input_type"),width ="200px",label = "Select Type:",choices = c("blinded","unblinded"),selected = NULL),
 
-selectInput(inputId = ns("select_input_dataset_type"),width ="200px",label = "Select Dataset Type:",choices = c("SDTM (Tabulation)","ADAM (Analysis)","SEND (NonClinical)"),selected = NULL),
-selectInput(inputId = ns("select_input_therapeutic"),width ="200px",label = "Select Therapeutic Area:",choices = therapeutic_areas,selected = NULL)
-
- ),
+        selectInput(inputId = ns("select_input_dataset_type"),width ="200px",label = "Select Dataset Type:",choices = c("SDTM (Tabulation)","ADAM (Analysis)","SEND (NonClinical)"),selected = NULL),
+        selectInput(inputId = ns("select_input_therapeutic"),width ="200px",label = "Select Therapeutic Area:",choices = therapeutic_areas,selected = NULL)
 
 
-)
+
+      )
+    )
+
+
+
+
+  )
+
+
+
+
+
   }
 upload_data_server<-function(id){
 
