@@ -13,11 +13,11 @@ source("R/upload_data.R")
 ui <- bs4DashPage(
 
   header = bs4DashNavbar(
-    skin = "maroon",
+    # skin = "maroon",
 
     brand = dashboardBrand(
-      title = "Data2SDTM Application",
-      color = "navy"
+      title = "Data2SDTM Application"
+      # color = "navy"
     ),
 
     bs4Dash::navbarMenu(
@@ -34,7 +34,9 @@ ui <- bs4DashPage(
   ),
 
   body = bs4DashBody(
-
+    tags$head(
+      shiny::includeCSS("~/Ephicacy/Data2SDTM/Data2SDTM/SDTM_Dynamic_app/www/main.css")
+    ),
     bs4TabItems(
       bs4TabItem(
         tabName = "upload_data_tab",
