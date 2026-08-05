@@ -35,7 +35,8 @@ upload_data_ui <- function(id) {
   ns <- NS(id)
   layout_columns(
 
-    card(
+    bslib::card(
+      height = "100px",
       card_header("Study Information"),
 
       card_body(

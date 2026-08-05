@@ -2,7 +2,7 @@
 #loading libraries
 
 library(shiny)
-library(bs4Dash)
+# library(bs4Dash)
 library(bslib)
 #loading the modules
 
@@ -11,8 +11,7 @@ source("R/upload_data.R")
 
 #Start of the ui
 
-library(shiny)
-library(bslib)
+
 
 ui <- page_navbar(
 
