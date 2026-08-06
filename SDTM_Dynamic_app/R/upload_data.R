@@ -38,13 +38,13 @@ upload_data_ui <- function(id) {
     bslib::card(
     fill=FALSE,
     height = "300px",
-    style = "width: 1000px;",
-      card_header("Uploading the Raw Dataset:"),
+    style = "width: 1200px;",
+      card_header("Upload Study Information:"),
 
       card_body(
 
       fluidRow(
-        column(width = 3,
+        column(width = 2,
         selectizeInput(inputId = ns("select_input_type"),width = "100%",label = "Select Type:",choices = c("","blinded","unblinded"), selected = "",
                     options = list(
                       placeholder = "Select Type"
@@ -53,7 +53,7 @@ upload_data_ui <- function(id) {
 column(width = 3,
         selectInput(inputId = ns("select_input_dataset_type"),width = "100%",label = "Select Dataset Type:",choices = c("SDTM (Tabulation)","ADAM (Analysis)","SEND (NonClinical)"),selected = NULL),
 ),
-column(width = 5,
+column(width = 3,
 
        selectizeInput(
          ns("select_input_therapeutic"),
@@ -64,7 +64,20 @@ column(width = 5,
            placeholder = "Select TA"
          )
 )
-)),
+),
+column(width = 4,
+
+       selectizeInput(
+         ns("select_input_version"),
+         "Select Version::",
+         choices = c("",c("SDTMIG 3.2","SDTMIG 3.3","ADAMIG 1.2")),
+         selected = "",
+         options = list(
+           placeholder = "Select TA"
+         )
+       )
+)
+),
 fileInput(ns("upload_raw_dataset"),label = "Upload Raw Dataset:",placeholder = "Choose the Dataset",accept = c(".csv",".xlsl",".sas7bdat"),multiple = FALSE)
 
       )
