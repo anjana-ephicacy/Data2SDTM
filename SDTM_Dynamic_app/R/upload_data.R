@@ -36,30 +36,41 @@ upload_data_ui <- function(id) {
   layout_columns(
 
     bslib::card(
-      height = "100px",
-      card_header("Study Information"),
+    fill=FALSE,
+    height = "300px",
+    style = "width: 1000px;",
+      card_header("Uploading the Raw Dataset:"),
 
       card_body(
 
-        selectInput(inputId = ns("select_input_type"),width ="200px",label = "Select Type:",choices = c("blinded","unblinded"),selected = NULL),
+      fluidRow(
+        column(width = 3,
+        selectizeInput(inputId = ns("select_input_type"),width = "100%",label = "Select Type:",choices = c("","blinded","unblinded"), selected = "",
+                    options = list(
+                      placeholder = "Select Type"
+                    )),
+),
+column(width = 3,
+        selectInput(inputId = ns("select_input_dataset_type"),width = "100%",label = "Select Dataset Type:",choices = c("SDTM (Tabulation)","ADAM (Analysis)","SEND (NonClinical)"),selected = NULL),
+),
+column(width = 5,
 
-        selectInput(inputId = ns("select_input_dataset_type"),width ="200px",label = "Select Dataset Type:",choices = c("SDTM (Tabulation)","ADAM (Analysis)","SEND (NonClinical)"),selected = NULL),
-        selectInput(inputId = ns("select_input_therapeutic"),width ="200px",label = "Select Therapeutic Area:",choices = therapeutic_areas,selected = NULL)
-
-
+       selectizeInput(
+         ns("select_input_therapeutic"),
+         "Select Therapeutic Area::",
+         choices = c("",therapeutic_areas),
+         selected = "",
+         options = list(
+           placeholder = "Select TA"
+         )
+)
+)),
+fileInput(ns("upload_raw_dataset"),label = "Upload Raw Dataset:",placeholder = "Choose the Dataset",accept = c(".csv",".xlsl",".sas7bdat"),multiple = FALSE)
 
       )
     )
 
-
-
-
-  )
-
-
-
-
-
+)
   }
 upload_data_server<-function(id){
 
