@@ -78,8 +78,13 @@ column(width = 4,
        )
 )
 ),
-fileInput(ns("upload_raw_dataset"),label = "Upload Raw Dataset:",placeholder = "Choose the Dataset",accept = c(".csv",".xlsl",".sas7bdat"),multiple = FALSE)
-
+fluidRow(
+  column(width = 4,
+fileInput(ns("upload_raw_dataset"),label = "Upload Raw Dataset:",placeholder = "Choose the Dataset",accept = c(".csv",".xlsl",".sas7bdat"),multiple = FALSE)),
+column(width = 2,
+tags$div(class="Proceed-action-button",
+       actionButton(ns("proceed_raw_dataset_button"),label = "Proceed")))
+)
       )
     )
 

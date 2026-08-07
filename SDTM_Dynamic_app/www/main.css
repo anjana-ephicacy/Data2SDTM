@@ -59,3 +59,15 @@ body {
 .btn-primary:hover {
     background-color: #5c50e6;
 }
+
+
+.Proceed-action-button{
+ background-color: #439f7c;
+     width: fit-content;
+     margin-left: -41px;
+     margin-top: 25px;
+
+}
+.action-label{
+  color: white;
+}
