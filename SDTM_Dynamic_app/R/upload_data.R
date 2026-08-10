@@ -83,7 +83,10 @@ fluidRow(
 fileInput(ns("upload_raw_dataset"),label = "Upload Raw Dataset:",placeholder = "Choose the Dataset",accept = c(".csv",".xlsl",".sas7bdat"),multiple = FALSE)),
 column(width = 2,
 tags$div(class="Proceed-action-button",
-       actionButton(ns("proceed_raw_dataset_button"),label = "Proceed")))
+       actionButton(ns("proceed_raw_dataset_button"),label = "Proceed")),
+
+      uiOutput(ns("warning_info_missing_input_ui"))
+)
 )
       )
     )
@@ -94,6 +97,31 @@ upload_data_server<-function(id){
 
   moduleServer(id, function(input, output, session) {
 
+    # server of the actionbutton proceed_raw_dataset_button
+    observeEvent(input$proceed_raw_dataset_button,{
+
+      print(is.null(input$upload_raw_dataset))
+      print(input$select_input_type)
+      print(input$select_input_dataset_type)
+      print(input$select_input_therapeutic)
+      print(input$select_input_version)
+
+
+     if(input$select_input_type == "" & input$select_input_dataset_type !="" & input$select_input_therapeutic == "" & input$select_input_version == "" & is.null(input$upload_raw_dataset) == TRUE ){
+       output$warning_info_missing_input_ui<-renderPrint({
+         paste0("Please fill the information")
+       })
+
+     }else{
+       output$warning_info_missing_input_ui<-renderPrint({
+         paste0("Thank you for the information")
+       })
+     }
+
+
+
+
+    })
 
   })
 
