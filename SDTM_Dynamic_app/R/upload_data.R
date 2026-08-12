@@ -57,7 +57,7 @@ column(width = 3,
 
        selectizeInput(
          ns("select_input_therapeutic"),
-         "Select Therapeutic Area::",
+         "Select Therapeutic Area:",
          choices = c("",therapeutic_areas),
          selected = "",
          options = list(
@@ -69,7 +69,7 @@ column(width = 4,
 
        selectizeInput(
          ns("select_input_version"),
-         "Select Version::",
+         "Select Version:",
          choices = c("",c("SDTMIG 3.2","SDTMIG 3.3","ADAMIG 1.2")),
          selected = "",
          options = list(
@@ -81,23 +81,25 @@ column(width = 4,
 fluidRow(
   column(width = 4,
 fileInput(ns("upload_raw_dataset"),label = "Upload Raw Dataset:",placeholder = "Choose the Dataset",accept = c(".csv",".xlsl",".sas7bdat"),multiple = FALSE)),
-column(width = 2,
+column(width = 4,
 tags$div(class="Proceed-action-button",
        actionButton(ns("proceed_raw_dataset_button"),label = "Proceed")),
-
-      uiOutput(ns("warning_info_missing_input_ui"))
+tags$div(class="warning-info-text",
+      uiOutput(ns("warning_info_missing_input_ui")))
 )
 )
       )
     )
 
 )
-  }
+}
+
+
 upload_data_server<-function(id){
 
   moduleServer(id, function(input, output, session) {
 
-    # server of the actionbutton proceed_raw_dataset_button
+    # server of the action button proceed_raw_dataset_button
     observeEvent(input$proceed_raw_dataset_button,{
 
       print(is.null(input$upload_raw_dataset))
@@ -108,12 +110,12 @@ upload_data_server<-function(id){
 
 
      if(input$select_input_type == "" & input$select_input_dataset_type !="" & input$select_input_therapeutic == "" & input$select_input_version == "" & is.null(input$upload_raw_dataset) == TRUE ){
-       output$warning_info_missing_input_ui<-renderPrint({
-         paste0("Please fill the information")
+       output$warning_info_missing_input_ui<-renderText({
+         paste0("Please fill the information above")
        })
 
      }else{
-       output$warning_info_missing_input_ui<-renderPrint({
+       output$warning_info_missing_input_ui<-renderText({
          paste0("Thank you for the information")
        })
      }

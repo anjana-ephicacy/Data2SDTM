@@ -71,3 +71,9 @@ body {
 .action-label{
   color: white;
 }
+
+.warning-info-text{
+    color: red;
+    margin-left: -40px;
+    padding-top: 10px;
+}
