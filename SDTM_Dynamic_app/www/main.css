@@ -46,8 +46,9 @@ body {
 /* card headers */
 .card-header {
     background-color: white;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 800;
+    font-size: 1.3rem;
+
 }
 
 /* buttons */
@@ -62,9 +63,9 @@ body {
 
 
 .Proceed-action-button{
- background-color: #439f7c;
+      background-color: #439f7c;
      width: fit-content;
-     margin-left: -41px;
+      margin-left: -97px;
      margin-top: 25px;
 
 }
@@ -74,6 +75,11 @@ body {
 
 .warning-info-text{
     color: red;
-    margin-left: -40px;
+    margin-left: -129px;
+    padding-top: 10px;
+}
+.thank-you-text{
+   color: Green;
+    margin-left: -129px;
     padding-top: 10px;
 }

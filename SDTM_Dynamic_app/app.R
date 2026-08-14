@@ -2,7 +2,7 @@
 #loading libraries
 
 library(shiny)
-
+library(DT) # package to show the dataset
 library(bslib)
 #loading the modules
 
