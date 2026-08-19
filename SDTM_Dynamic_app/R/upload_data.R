@@ -39,7 +39,7 @@ upload_data_ui <- function(id) {
     bslib::card(
     fill=FALSE,
     height = "200px",
-    style = "width: 1800px;",
+    style = "width: 1900px;",
       card_header("Upload Study Information:"),
 
       card_body(
@@ -70,7 +70,9 @@ column(width = 2,
          )
 )
 ),
-column(width = 2,
+column(width = 1,
+
+
 
        selectizeInput(
          ns("select_input_version"),
@@ -82,6 +84,13 @@ column(width = 2,
          )
        )
 ),
+
+column(width = 1,
+       selectizeInput(inputId = ns("select_input_domain"),width = "100%",label = "Select Domain:",choices = c("","DM","MH"), selected = "",
+                      options = list(
+                        placeholder = "Select Domain"
+                      ))
+       ),
 column(width = 3,
        fileInput(ns("upload_raw_dataset"),label = "Upload Raw Dataset:",placeholder = "Choose the Dataset",accept = c(".csv",".xlsl",".sas7bdat"),multiple = FALSE)),
 
@@ -116,9 +125,9 @@ upload_data_server<-function(id){
     ns <- session$ns
     # server of the action button proceed_raw_dataset_button
     observeEvent(input$proceed_raw_dataset_button,{
+    print("clicked on proceed button")
 
-
-     if(input$select_input_type == "" & input$select_input_dataset_type =="" & input$select_input_therapeutic == "" & input$select_input_version == "" & is.null(input$upload_raw_dataset) == TRUE ){
+     if(input$select_input_type == "" & input$select_input_domain == "" &input$select_input_dataset_type =="" & input$select_input_therapeutic == "" & input$select_input_version == "" & is.null(input$upload_raw_dataset) == TRUE ){
        output$warning_info_missing_input_ui<-renderUI({
          tags$div(class="warning-info-text",
                   textOutput(ns("warning_info_text"))
@@ -141,6 +150,25 @@ upload_data_server<-function(id){
         paste0("Thank you for the information")
       })
 
+      #rendering the data table of the file input
+
+      output$view_input_dataset<-renderDT({
+
+        datatable(
+
+          uploaded_data(),
+
+          filter = "top", # Adds filter boxes to each column
+
+          options = list(
+
+            pageLength = 10
+
+          )
+
+        )
+      })
+
     })  #close of the observe event
 
   #reactive function to the uploaded dataset
@@ -154,24 +182,7 @@ upload_data_server<-function(id){
     })
 
 
-  #rendering the data table of the file input
 
-    output$view_input_dataset<-renderDT({
-
-      datatable(
-
-        uploaded_data(),
-
-        filter = "top", # Adds filter boxes to each column
-
-        options = list(
-
-          pageLength = 10
-
-        )
-
-      )
-    })
 
 
 
